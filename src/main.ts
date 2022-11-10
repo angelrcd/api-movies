@@ -24,10 +24,21 @@ app.put('/', (req: any, res: any) => {
   res.json(movies);
 })
 
-app.put('/like/:title', (req: any, res: any)=>{
+app.put('/addlike/:title', (req: any, res: any)=>{
   movies.forEach(movie => {
     if(movie.title === req.params.title){
       movie.likes++;
+    }
+    res.json(movies);
+  });
+})
+
+app.put('/removelike/:title', (req: any, res: any)=>{
+  movies.forEach(movie => {
+    if(movie.title === req.params.title){
+      if(movie.likes>0){
+        movie.likes--;
+      }
     }
     res.json(movies);
   });
