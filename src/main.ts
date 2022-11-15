@@ -50,8 +50,15 @@ app.delete('/deleteMovie/:title', (req: any, res: any) => {
   return;
 })
 
-app.patch('/', (req: any, res: any) => {
-  res.json(movies);
+app.patch('/patch/:existingMovie/:updatingMovie', (req: any, res: any) => {
+  const oldMovie = req.params.existingMovie;
+  const newMovie = req.params.updatingMovie;
+  movies.map(movie => {
+    if (movie.title == oldMovie){
+      movie.title = newMovie;
+    }
+  })
+  res.status(200).json(movies);
 })
 
 app.put('/addlike/:title', (req: any, res: any)=>{
