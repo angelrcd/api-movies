@@ -6,7 +6,7 @@ app.use(express.json());
 const movies = [
   {
     title: "peli1",
-    likes: "0",
+    likes: 0,
   }
 ]
 
@@ -30,6 +30,15 @@ app.delete('/deleteMovie/:title', (req: any, res: any) => {
 
 app.patch('/', (req: any, res: any) => {
   res.json(movies);
+})
+
+app.put('/like/:title', (req: any, res: any)=>{
+  movies.forEach(movie => {
+    if(movie.title === req.params.title){
+      movie.likes++;
+    }
+    res.json(movies);
+  });
 })
 
 app.listen(3000, () => console.log('Ready on port 3000!'));
