@@ -1,6 +1,7 @@
-const express = require('express');
+import express from "express";
+import { runInNewContext } from "vm";
 const app = express();
-app.use(express.json())
+app.use(express.json());
 
 const movies = [
   {
@@ -13,8 +14,7 @@ app.get('/', (req: any, res: any) => {
   res.json(movies);
 })
 
-app.post('/', (req: any, res: any) => {
-  res.json(movies);
+app.post('/addMovie', (req: any, res: any) => {
 })
 
 app.delete('/deleteMovie/:title', (req: any, res: any) => {
@@ -28,7 +28,7 @@ app.delete('/deleteMovie/:title', (req: any, res: any) => {
   return;
 })
 
-app.put('/', (req: any, res: any) => {
+app.patch('/', (req: any, res: any) => {
   res.json(movies);
 })
 
