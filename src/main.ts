@@ -76,16 +76,6 @@ app.put('/unlike/:title', (req: any, res: any)=>{
   });
 })
 
-app.put('/removelike/:title', (req: any, res: any)=>{
-  movies.forEach(movie => {
-    if(movie.title === req.params.title){
-      if(movie.likes>0){
-        movie.likes--;
-      }
-    }
-    res.json(movies);
-  });
-})
 
 app.listen(3000, () => console.log('Ready on port 3000!'));
 
