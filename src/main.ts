@@ -54,7 +54,7 @@ app.patch('/', (req: any, res: any) => {
   res.json(movies);
 })
 
-app.put('/like/:title', (req: any, res: any)=>{
+app.put('/addlike/:title', (req: any, res: any)=>{
   movies.forEach(movie => {
     if(movie.title === req.params.title){
       let likes: number = parseInt(movie.likes);
@@ -71,6 +71,17 @@ app.put('/unlike/:title', (req: any, res: any)=>{
       let likes: number = parseInt(movie.likes);
       likes--;
       movie.likes = String(likes);
+    }
+    res.json(movies);
+  });
+})
+
+app.put('/removelike/:title', (req: any, res: any)=>{
+  movies.forEach(movie => {
+    if(movie.title === req.params.title){
+      if(movie.likes>0){
+        movie.likes--;
+      }
     }
     res.json(movies);
   });
